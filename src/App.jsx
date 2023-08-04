@@ -1,6 +1,5 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
@@ -8,11 +7,15 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="pageName">Home Page</h1>
-      <p>Welcome to programmer jokes!</p>
-      <button>Get Random Joke</button>
+      <h1 className="pageName">Welcome to programmer jokes!</h1>
+
+      <button>
+        <Link to={`random`}>Get Random Joke</Link>
+      </button>
       <br></br>
-      <button>Top 10 jokes</button>
+      <button>
+        <Link to={`jokes/top-10`}>Top 10 jokes</Link>
+      </button>
     </div>
   );
 }
