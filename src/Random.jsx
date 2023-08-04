@@ -1,8 +1,18 @@
+import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 
 export async function loader() {
-  await new Promise((resolve) => setTimeout(resolve, 2));
-  return null;
+  try {
+    const { data } = await axios.get(
+      "https://official-joke-api.appspot.com/random_joke"
+    );
+
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw new Response("Not Found", { status: 404 });
+  }
 }
 
 function Random() {
