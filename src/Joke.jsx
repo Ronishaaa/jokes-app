@@ -1,6 +1,16 @@
+import axios from "axios";
+
 export async function loader() {
-  await new Promise((resolve) => setTimeout(resolve, 2));
-  return null;
+  try {
+    const { data } = await axios.get(
+      "https://official-joke-api.appspot.com/jokes/:id"
+    );
+
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw new Response("Not Found", { status: 404 });
+  }
 }
 
 function Joke() {

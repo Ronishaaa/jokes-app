@@ -1,8 +1,17 @@
 import "./Top.css";
+import axios from "axios";
 
 export async function loader() {
-  await new Promise((resolve) => setTimeout(resolve, 2));
-  return null;
+  try {
+    const { data } = await axios.get(
+      "https://official-joke-api.appspot.com/random_ten"
+    );
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw new Response("Not Found", { status: 404 });
+  }
 }
 
 function Top() {
