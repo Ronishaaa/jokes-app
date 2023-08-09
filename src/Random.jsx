@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLoaderData } from "react-router-dom";
 
 export async function loader() {
   try {
@@ -8,7 +8,6 @@ export async function loader() {
       "https://official-joke-api.appspot.com/random_joke"
     );
 
-    console.log(data);
     return data;
   } catch (error) {
     throw new Response("Not Found", { status: 404 });
@@ -17,14 +16,12 @@ export async function loader() {
 
 function Random() {
   const navigate = useNavigate();
+  const data = useLoaderData();
 
   return (
     <div className="container">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum laborum
-        ducimus doloremque ipsa iste ut vero ullam? Dolorum, provident
-        asperiores. Quod illo quis ea, vero minus rerum iusto alias nihil?
-      </p>
+      <p>Setup: {data.setup}</p>
+      <p>Punchline: {data.punchline}</p>
 
       <button
         type="button"
